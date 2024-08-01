@@ -1,0 +1,5 @@
+{
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-action.json": "file:///home/ngthvan1612/Documents/Github/hcmute-online-judge.github.io/.github/workflows/deploy.yml"
+  }
+}
