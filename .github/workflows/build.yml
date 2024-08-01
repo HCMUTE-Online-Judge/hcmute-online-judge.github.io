@@ -36,7 +36,7 @@ jobs:
 
       - name: Upload artifact
         id: upload-artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v1
         with:
           name: github-pages
           path: services/wiki/build
@@ -53,7 +53,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy Docs
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v1
         # with:
         #   branch: gh-pages
         #   folder: services/wiki/build
