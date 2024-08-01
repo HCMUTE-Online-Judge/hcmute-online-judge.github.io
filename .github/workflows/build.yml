@@ -33,6 +33,7 @@ jobs:
           pnpm build &&
           cd build &&
           find . -type l -exec unlink {} \;
+
       - name: Upload artifact
         id: upload-artifact
         uses: actions/upload-artifact@v4
