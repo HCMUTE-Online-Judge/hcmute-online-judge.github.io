@@ -35,7 +35,7 @@ jobs:
           find . -type l -exec unlink {} \;
       - name: Upload artifact
         id: upload-artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: github-pages
           path: services/wiki/build
