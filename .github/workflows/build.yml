@@ -28,8 +28,8 @@ jobs:
         env:
           NODE_OPTIONS: --max_old_space_size=8192
         run: >-
-          cd services/wiki
-          pnpm install
+          cd services/wiki && \
+          pnpm install && \
           pnpm build
   
   deploy:
