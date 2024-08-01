@@ -24,17 +24,12 @@ jobs:
           run_install: true
           version: 8
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: pnpm
-
       - name: Build Docs
         env:
           NODE_OPTIONS: --max_old_space_size=8192
         run: >-
           cd services/wiki
+          pnpm install
           pnpm build
   
   deploy:
