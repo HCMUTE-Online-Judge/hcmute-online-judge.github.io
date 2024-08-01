@@ -31,6 +31,13 @@ jobs:
           cd services/wiki &&
           pnpm install &&
           pnpm build
+      - name: Upload artifact
+        id: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: services/wiki/build
+          if-no-files-found: error
   
   deploy:
     needs: build
