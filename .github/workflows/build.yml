@@ -48,7 +48,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy Docs
-        uses: actions/deploy-pages
+        uses: actions/deploy-pages@v4
         with:
           branch: gh-pages
           folder: services/wiki/build
