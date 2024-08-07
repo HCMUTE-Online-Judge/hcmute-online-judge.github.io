@@ -1,0 +1,59 @@
+name: Build Wiki Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          run_install: true
+          version: 8
+
+      - name: Build Docs
+        env:
+          NODE_OPTIONS: --max_old_space_size=8192
+        run: >-
+          cd services/wiki &&
+          pnpm install &&
+          pnpm build &&
+          cd build &&
+          find . -type l -exec unlink {} \;
+
+      - name: Upload artifact
+        id: upload-artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          name: github-pages
+          path: services/wiki/build
+          if-no-files-found: error
+  
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy Docs
+        uses: actions/deploy-pages@v1
+        # with:
+        #   branch: gh-pages
+        #   folder: services/wiki/build
